@@ -3,7 +3,7 @@ const COLORS = {
   secondary: "#2E325C",
   purple: "#B28DFF",
   blue: "#01C1FF",
-  lightGrey: "#464A6D",
+  lightGrey: "#B4BAD7",
 };
 
 export default COLORS;
