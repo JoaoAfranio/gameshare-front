@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import ListGames from "../components/ListGames.js";
 import COLORS from "../constants/colors.js";
 
 export default function Games() {
@@ -6,9 +7,11 @@ export default function Games() {
     <Container>
       <SearchBox>
         <input placeholder="Pesquisar Jogos" />
-
         <ion-icon name="search-outline"></ion-icon>
       </SearchBox>
+
+      <ListGames />
+      <ListGames />
     </Container>
   );
 }
