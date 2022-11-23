@@ -19,7 +19,7 @@ export default function Games() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #1f2341;
+  background-color: ${COLORS.primary};
 
   padding: 20px;
 `;
