@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Footer from "../components/Footer";
 import PreviewGame from "../components/PreviewGame";
 import COLORS from "../constants/colors";
 
@@ -19,6 +20,8 @@ export default function CategoryGames() {
         <PreviewGame />
         <PreviewGame />
       </BoxGames>
+
+      <Footer color={COLORS.secondary} />
     </Container>
   );
 }
