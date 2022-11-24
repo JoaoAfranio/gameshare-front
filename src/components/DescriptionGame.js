@@ -12,7 +12,7 @@ export default function DescriptionGame() {
       <BoxText>
         <p className="title">Detetive</p>
         <p className="info">Editora Nacional</p>
-        <p className="info">Policial</p>
+        <p className="value">R$ 7,90 /hr</p>
       </BoxText>
       <BoxButtons>
         <Button>
@@ -64,14 +64,19 @@ const BoxText = styled.div`
 
   color: ${COLORS.primary};
 
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .value,
   .info {
     font-size: 14px;
     color: ${COLORS.secondary};
   }
 
-  .title {
-    font-size: 18px;
-    font-weight: bold;
+  .value {
+    color: #ffffff;
   }
 `;
 
