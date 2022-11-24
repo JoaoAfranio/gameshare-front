@@ -2,15 +2,28 @@ import { useState } from "react";
 import styled from "styled-components";
 import COLORS from "../constants/colors";
 import ModalCart from "./ModalCart";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer({ color }) {
   const [show, setShow] = useState(false);
 
+  const navigate = useNavigate();
+
   return (
     <>
       <Container color={color}>
-        <ion-icon name="person"></ion-icon>
-        <ion-icon name="game-controller"></ion-icon>
+        <ion-icon
+          onClick={() => {
+            navigate("/profile");
+          }}
+          name="person"
+        ></ion-icon>
+        <ion-icon
+          name="game-controller"
+          onClick={() => {
+            navigate("/games");
+          }}
+        ></ion-icon>
         <ion-icon
           onClick={() => {
             setShow(!show);

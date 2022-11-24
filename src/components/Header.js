@@ -1,10 +1,18 @@
 import styled from "styled-components";
 import COLORS from "../constants/colors";
+import { useNavigate } from "react-router-dom";
 
 export default function Header({ title }) {
+  const navigate = useNavigate();
+
   return (
     <Container>
-      <ion-icon name="arrow-back-outline"></ion-icon>
+      <ion-icon
+        onClick={() => {
+          navigate(-1);
+        }}
+        name="arrow-back-outline"
+      ></ion-icon>
       <h1>{title}</h1>
     </Container>
   );
