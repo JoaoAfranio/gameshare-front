@@ -47,7 +47,7 @@ const GlobalStyle = createGlobalStyle`
     border-spacing: 0;
   }
   html, body, #root, #root>div {
-    height: 100vh;
+    min-height: 100vh;
   }
 `;
 

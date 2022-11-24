@@ -7,6 +7,7 @@ export default function CategoryGames() {
   return (
     <Container>
       <Header title="Perfil" />
+      <Title>Dados Pessoais</Title>
       <BoxInfo>
         <Info>
           <Label>Email</Label>
@@ -18,6 +19,11 @@ export default function CategoryGames() {
           <Input placeholder="Nome" value="Nome da Pessoa" type="text" />
         </Info>
 
+        <Button>Confirmar Alterações</Button>
+      </BoxInfo>
+
+      <Title>Alterar Senha</Title>
+      <BoxInfo>
         <Info>
           <Label>Senha Antiga</Label>
           <Input placeholder="Senha antiga" type="password" />
@@ -33,7 +39,32 @@ export default function CategoryGames() {
           <Input placeholder="Confirmar senha" type="password" />
         </Info>
 
-        <Button>Confirmar Alterações</Button>
+        <Button>Confirmar Nova Senha</Button>
+      </BoxInfo>
+
+      <Title>Alterar Endereço</Title>
+      <BoxInfo>
+        <Info>
+          <Label>Endereço</Label>
+          <Input placeholder="Endereço" type="text" />
+        </Info>
+
+        <Info>
+          <Label>Cidade</Label>
+          <Input placeholder="Cidade" type="text" />
+        </Info>
+
+        <Info>
+          <Label>Estado</Label>
+          <Input placeholder="Estado" type="text" />
+        </Info>
+
+        <Info>
+          <Label>CEP</Label>
+          <Input placeholder="CEP" type="text" />
+        </Info>
+
+        <Button>Confirmar Novo Endereço</Button>
       </BoxInfo>
       <Footer color={COLORS.secondary} />
     </Container>
@@ -44,6 +75,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${COLORS.primary};
+  padding-bottom: 100px;
 `;
 
 const BoxInfo = styled.div`
@@ -89,4 +121,10 @@ const Button = styled.button`
   border: none;
   outline: none;
   border-radius: 15px;
+`;
+
+const Title = styled.h1`
+  margin: 20px 0px 0px 15px;
+  font-size: 22px;
+  color: ${COLORS.lightGrey};
 `;
