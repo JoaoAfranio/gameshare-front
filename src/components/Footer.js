@@ -1,13 +1,25 @@
+import { useState } from "react";
 import styled from "styled-components";
 import COLORS from "../constants/colors";
+import ModalCart from "./ModalCart";
 
 export default function Footer({ color }) {
+  const [show, setShow] = useState(false);
+
   return (
-    <Container color={color}>
-      <ion-icon name="person"></ion-icon>
-      <ion-icon name="game-controller"></ion-icon>
-      <ion-icon name="cart"></ion-icon>
-    </Container>
+    <>
+      <Container color={color}>
+        <ion-icon name="person"></ion-icon>
+        <ion-icon name="game-controller"></ion-icon>
+        <ion-icon
+          onClick={() => {
+            setShow(!show);
+          }}
+          name="cart"
+        ></ion-icon>
+      </Container>
+      <ModalCart show={show} setShow={setShow} />
+    </>
   );
 }
 
