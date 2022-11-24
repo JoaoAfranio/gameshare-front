@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import COLORS from "../constants/colors";
-import Footer from "./Footer";
 import PreviewGame from "./PreviewGame";
 
 export default function ListGames() {
@@ -16,8 +15,6 @@ export default function ListGames() {
         <PreviewGame />
         <PreviewGame />
       </BoxGames>
-
-      <Footer />
     </Container>
   );
 }

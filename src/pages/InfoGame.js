@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import DescriptionGame from "../components/DescriptionGame";
+import Footer from "../components/Footer";
 import COLORS from "../constants/colors";
 
 export default function InfoGame() {
@@ -18,6 +19,8 @@ export default function InfoGame() {
         deste mistério, vá entrando com seu peão nos possíveis locais do crime e dando palpites sobre o culpado e arma usada. Tire sua deduções e descubra a
         cada partida, um novo e emocionante mistério!
       </TextInfo>
+
+      <Footer color={COLORS.primary} />
     </Container>
   );
 }

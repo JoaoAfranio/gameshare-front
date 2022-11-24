@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ListGames from "../components/ListGames.js";
 import COLORS from "../constants/colors.js";
+import Footer from "../components/Footer";
 
 export default function Games() {
   return (
@@ -12,6 +13,8 @@ export default function Games() {
 
       <ListGames />
       <ListGames />
+
+      <Footer color={COLORS.secondary} />
     </Container>
   );
 }

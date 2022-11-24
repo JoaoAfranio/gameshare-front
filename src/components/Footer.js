@@ -1,12 +1,11 @@
 import styled from "styled-components";
 import COLORS from "../constants/colors";
 
-export default function Footer() {
+export default function Footer({ color }) {
   return (
-    <Container>
-      <ion-icon name="home"></ion-icon>
-      <ion-icon name="game-controller"></ion-icon>
+    <Container color={color}>
       <ion-icon name="person"></ion-icon>
+      <ion-icon name="game-controller"></ion-icon>
       <ion-icon name="cart"></ion-icon>
     </Container>
   );
@@ -24,7 +23,7 @@ const Container = styled.div`
   bottom: 0;
   left: 0;
 
-  background-color: ${COLORS.secondary};
+  background-color: ${(props) => props.color};
 
   border-radius: 20px 20px 0 0;
 
