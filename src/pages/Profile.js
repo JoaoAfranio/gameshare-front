@@ -103,7 +103,7 @@ const Label = styled.h1`
 const Input = styled.input`
   background-color: ${COLORS.lightGrey};
   height: 30px;
-  padding: 5px;
+  padding: 5px 10px;
 
   border: none;
   outline: none;
