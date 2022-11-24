@@ -11,6 +11,13 @@ export default function InfoGame() {
       </Header>
 
       <DescriptionGame />
+
+      <TextInfo>
+        Jogo Detetive com App - Estrela! Um jogo de investigação acima de qualquer suspeita! Tudo começou na mansão de um rico industrial, Dr. Pessoa, a vítima
+        do crime. Como um verdadeiro Sherlock, você está lá. Só que além de detetive, você também é um suspeito! Para chegar cada vez mais perto da solução
+        deste mistério, vá entrando com seu peão nos possíveis locais do crime e dando palpites sobre o culpado e arma usada. Tire sua deduções e descubra a
+        cada partida, um novo e emocionante mistério!
+      </TextInfo>
     </Container>
   );
 }
@@ -37,4 +44,14 @@ const Header = styled.div`
     font-size: 22px;
     color: ${COLORS.lightGrey};
   }
+`;
+
+const TextInfo = styled.p`
+  margin-top: 20px;
+  padding: 0 20px;
+
+  line-height: 20px;
+
+  font-size: 16px;
+  color: ${COLORS.lightGrey};
 `;
