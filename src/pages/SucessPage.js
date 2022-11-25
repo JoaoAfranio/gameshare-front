@@ -1,10 +1,15 @@
 import styled from "styled-components";
+import COLORS from "../constants/colors";
+import Footer from "../components/Footer";
 
 function SucessPage() {
     return (
         <SucessScreen>
-            <ion-icon name="checkmark-circle"></ion-icon>
+            <Icon>
+                <ion-icon name="checkmark-circle"></ion-icon>
+            </Icon>
             <p>Pedido realizado com sucesso!</p>
+            <Footer color={COLORS.secondary} />
         </SucessScreen>
     )
 }
@@ -15,17 +20,21 @@ const SucessScreen = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 43vh;
-
-    ion-icon{
-        font-size: 15vw;
-        color: green;
-    }
+    padding-top: 43vh;
+    background-color: ${COLORS.primary};
 
     p{
         margin-top: 2vw;
         font-family: 'Lexend Deca', sans-serif;
         font-weight: 400;
-        font-size: 5vw;
+        font-size: 3.5vw;
+        color: white;
     }
 `;
+
+const Icon = styled.div`
+    ion-icon{
+        font-size: 10vw;
+        color: green;
+    }
+`

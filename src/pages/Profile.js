@@ -11,12 +11,16 @@ export default function CategoryGames() {
       <BoxInfo>
         <Info>
           <Label>Email</Label>
-          <Input value="email@hotmail.com" disabled />
+          <Input 
+          value="email@hotmail.com" disabled />
         </Info>
 
         <Info>
           <Label>Nome</Label>
-          <Input placeholder="Nome" value="Nome da Pessoa" type="text" />
+          <Input 
+          placeholder="Nome" 
+          value="Nome da Pessoa" 
+          type="text" />
         </Info>
 
         <Button>Confirmar Alterações</Button>
@@ -26,17 +30,23 @@ export default function CategoryGames() {
       <BoxInfo>
         <Info>
           <Label>Senha Antiga</Label>
-          <Input placeholder="Senha antiga" type="password" />
+          <Input 
+          placeholder="Senha antiga" 
+          type="password" />
         </Info>
 
         <Info>
           <Label>Nova Senha</Label>
-          <Input placeholder="Nova Senha" type="password" />
+          <Input 
+          placeholder="Nova Senha" 
+          type="password" />
         </Info>
 
         <Info>
           <Label>Confirmar Senha</Label>
-          <Input placeholder="Confirmar senha" type="password" />
+          <Input 
+          placeholder="Confirmar senha" 
+          type="password" />
         </Info>
 
         <Button>Confirmar Nova Senha</Button>
@@ -46,22 +56,30 @@ export default function CategoryGames() {
       <BoxInfo>
         <Info>
           <Label>Endereço</Label>
-          <Input placeholder="Endereço" type="text" />
+          <Input 
+          placeholder="Endereço" 
+          type="text" />
         </Info>
 
         <Info>
           <Label>Cidade</Label>
-          <Input placeholder="Cidade" type="text" />
+          <Input 
+          placeholder="Cidade" 
+          type="text" />
         </Info>
 
         <Info>
           <Label>Estado</Label>
-          <Input placeholder="Estado" type="text" />
+          <Input 
+          placeholder="Estado" 
+          type="text" />
         </Info>
 
         <Info>
           <Label>CEP</Label>
-          <Input placeholder="CEP" type="text" />
+          <Input 
+          placeholder="CEP" 
+          type="text" />
         </Info>
 
         <Button>Confirmar Novo Endereço</Button>
