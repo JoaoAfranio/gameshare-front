@@ -24,8 +24,8 @@ export default function ListGames({ category }) {
       </Header>
 
       <BoxGames>
-        {games.map((product) => (
-          <PreviewGame product={product} />
+        {games.map((product, idx) => (
+          <PreviewGame key={idx} product={product} />
         ))}
       </BoxGames>
     </Container>

@@ -17,7 +17,7 @@ export default function ModalItem({ product, id }) {
         onClick={() => {
           const listItems = cart;
           listItems.splice(id, 1);
-          setCart(listItems);
+          setCart([...listItems]);
         }}
         className="delete"
       >
