@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from 'axios';
+import COLORS from "../constants/colors";
 
 function SignUpPage() {
     const [email, setEmail] = useState("");
@@ -95,6 +96,7 @@ const SignInUp = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-color: ${COLORS.primary};
 `;
 
 const Logo = styled.div`
@@ -111,6 +113,7 @@ const Logo = styled.div`
         font-style: normal;
         font-weight: 400;
         font-size: 7vh;
+        color: lightgrey;
     }
 `;
 
@@ -158,4 +161,5 @@ const Registration = styled.div`
     font-family: 'Lexend Deca', sans-serif;
     font-weight: 400;
     font-size: 2vh;
+    color: lightgrey;
 `;
