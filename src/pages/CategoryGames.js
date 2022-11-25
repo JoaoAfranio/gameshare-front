@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -5,18 +6,18 @@ import PreviewGame from "../components/PreviewGame";
 import COLORS from "../constants/colors";
 
 export default function CategoryGames() {
+  const location = useLocation();
+  const category = location.state.category;
+  const games = category.products;
+
   return (
     <Container>
-      <Header title="Tabuleiro" />
+      <Header title={category.name} />
 
       <BoxGames>
-        <PreviewGame />
-        <PreviewGame />
-        <PreviewGame />
-        <PreviewGame />
-        <PreviewGame />
-        <PreviewGame />
-        <PreviewGame />
+        {games.map((product) => (
+          <PreviewGame product={product} />
+        ))}
       </BoxGames>
 
       <Footer color={COLORS.secondary} />

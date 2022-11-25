@@ -1,19 +1,32 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import COLORS from "../constants/colors";
 import PreviewGame from "./PreviewGame";
 
-export default function ListGames() {
+export default function ListGames({ category }) {
+  const games = category?.products;
+  const navigate = useNavigate();
+
+  function navigation() {
+    navigate("/category", { state: { category } });
+  }
+
   return (
     <Container>
       <Header>
-        <h1>Tabuleiro</h1>
-        <ion-icon name="arrow-forward-outline"></ion-icon>
+        <h1>{category.name}</h1>
+        <ion-icon
+          onClick={() => {
+            navigation();
+          }}
+          name="arrow-forward-outline"
+        ></ion-icon>
       </Header>
 
       <BoxGames>
-        <PreviewGame />
-        <PreviewGame />
-        <PreviewGame />
+        {games.map((product) => (
+          <PreviewGame product={product} />
+        ))}
       </BoxGames>
     </Container>
   );

@@ -1,26 +1,49 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import COLORS from "../constants/colors";
+import { CartContext } from "../Contexts/CartContext";
 
-import mockedIMG from "../assets/imgs/detetive.jpg";
+export default function DescriptionGame({ product }) {
+  const { cart, setCart } = useContext(CartContext);
 
-export default function DescriptionGame() {
+  function addItemToCart() {
+    const item = {
+      _id: product._id,
+      image: product.image,
+      name: product.name,
+      value: product.value,
+    };
+
+    setCart([...cart, item]);
+  }
+
   return (
     <Description>
       <BoxImg>
-        <img src={mockedIMG} alt="game" />
+        <img src={product.image} alt="game" />
       </BoxImg>
       <BoxText>
-        <p className="title">Detetive</p>
-        <p className="info">Editora Nacional</p>
-        <p className="value">R$ 7,90 /hr</p>
+        <p className="title">{product.name}</p>
+        <p className="info">{product.publisher}</p>
+        <p className="value">R$ {product.value} /hr</p>
       </BoxText>
       <BoxButtons>
         <Button>
-          <ion-icon name="bag"></ion-icon>
+          <ion-icon
+            onClick={() => {
+              window.open(product.externalLink);
+            }}
+            name="bag"
+          ></ion-icon>
         </Button>
 
         <Button>
-          <ion-icon name="cart"></ion-icon>
+          <ion-icon
+            onClick={() => {
+              addItemToCart();
+            }}
+            name="cart"
+          ></ion-icon>
         </Button>
       </BoxButtons>
     </Description>

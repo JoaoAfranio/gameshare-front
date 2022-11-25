@@ -1,16 +1,22 @@
 import styled from "styled-components";
 
-import mockedIMG from "../assets/imgs/detetive.jpg";
 import COLORS from "../constants/colors";
 
-export default function PreviewGame() {
+import { useNavigate } from "react-router-dom";
+
+export default function PreviewGame({ product }) {
+  const navigate = useNavigate();
   return (
-    <Container>
-      <img src={mockedIMG} alt="game" />
+    <Container
+      onClick={() => {
+        navigate(`/games/${product._id}`);
+      }}
+    >
+      <img src={product.image} alt="game" />
       <Info>
-        <p>Detetive</p>
+        <p>{product.name}</p>
         <p className="rating">
-          3.2 <ion-icon name="star"></ion-icon>
+          {product.rating} <ion-icon name="star"></ion-icon>
         </p>
       </Info>
     </Container>

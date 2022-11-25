@@ -3,7 +3,22 @@ import ListGames from "../components/ListGames.js";
 import COLORS from "../constants/colors.js";
 import Footer from "../components/Footer";
 
+import { findAllProducts } from "../services/products.js";
+import { useEffect, useState } from "react";
+
 export default function Games() {
+  const [listProducts, setListProducts] = useState([]);
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  async function getProducts() {
+    const res = await findAllProducts();
+    setListProducts(res.data);
+    console.log(res.data);
+  }
+
   return (
     <Container>
       <SearchBox>
@@ -11,8 +26,9 @@ export default function Games() {
         <ion-icon name="search-outline"></ion-icon>
       </SearchBox>
 
-      <ListGames />
-      <ListGames />
+      {listProducts.map((category) => (
+        <ListGames key={category._id} category={category} />
+      ))}
 
       <Footer color={COLORS.secondary} />
     </Container>
@@ -25,6 +41,8 @@ const Container = styled.div`
   background-color: ${COLORS.primary};
 
   padding: 20px;
+
+  padding-bottom: 100px;
 `;
 
 const SearchBox = styled.div`
