@@ -2,21 +2,29 @@ import styled from "styled-components";
 import COLORS from "../constants/colors";
 
 import mockedIMG from "../assets/imgs/detetive.jpg";
+import { useNavigate } from "react-router-dom";
 
-export default function DescriptionGame() {
+export default function DescriptionGame({ product }) {
+  const navigate = useNavigate();
+
   return (
     <Description>
       <BoxImg>
         <img src={mockedIMG} alt="game" />
       </BoxImg>
       <BoxText>
-        <p className="title">Detetive</p>
-        <p className="info">Editora Nacional</p>
-        <p className="value">R$ 7,90 /hr</p>
+        <p className="title">{product.name}</p>
+        <p className="info">{product.publisher}</p>
+        <p className="value">R$ {product.value} /hr</p>
       </BoxText>
       <BoxButtons>
         <Button>
-          <ion-icon name="bag"></ion-icon>
+          <ion-icon
+            onClick={() => {
+              window.open(product.externalLink);
+            }}
+            name="bag"
+          ></ion-icon>
         </Button>
 
         <Button>

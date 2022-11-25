@@ -1,24 +1,41 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import DescriptionGame from "../components/DescriptionGame";
 import Footer from "../components/Footer";
 import COLORS from "../constants/colors";
+import { findProductByID } from "../services/products";
+import { useNavigate } from "react-router-dom";
 
 export default function InfoGame() {
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getProductByID();
+  }, []);
+
+  async function getProductByID() {
+    const res = await findProductByID(id);
+    setProduct(res.data);
+  }
+
   return (
     <Container>
       <Header>
-        <ion-icon name="arrow-back-outline"></ion-icon>
-        <h1>Detetive</h1>
+        <ion-icon
+          onClick={() => {
+            navigate(-1);
+          }}
+          name="arrow-back-outline"
+        ></ion-icon>
+        <h1>Informações do Jogo</h1>
       </Header>
 
-      <DescriptionGame />
+      <DescriptionGame product={product} />
 
-      <TextInfo>
-        Jogo Detetive com App - Estrela! Um jogo de investigação acima de qualquer suspeita! Tudo começou na mansão de um rico industrial, Dr. Pessoa, a vítima
-        do crime. Como um verdadeiro Sherlock, você está lá. Só que além de detetive, você também é um suspeito! Para chegar cada vez mais perto da solução
-        deste mistério, vá entrando com seu peão nos possíveis locais do crime e dando palpites sobre o culpado e arma usada. Tire sua deduções e descubra a
-        cada partida, um novo e emocionante mistério!
-      </TextInfo>
+      <TextInfo>{product.description}</TextInfo>
 
       <Footer color={COLORS.primary} />
     </Container>
