@@ -16,7 +16,6 @@ export default function Games() {
   async function getProducts() {
     const res = await findAllProducts();
     setListProducts(res.data);
-    console.log(res.data);
   }
 
   return (

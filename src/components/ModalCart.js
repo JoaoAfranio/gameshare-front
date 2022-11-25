@@ -36,7 +36,7 @@ export default function ModalCart({ show, setShow }) {
         </Header>
         <List>
           {cart.map((product, idx) => (
-            <ModalItem product={product} id={idx} />
+            <ModalItem key={idx} product={product} id={idx} />
           ))}
         </List>
 
