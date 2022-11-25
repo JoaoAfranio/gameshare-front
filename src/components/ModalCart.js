@@ -1,8 +1,23 @@
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import COLORS from "../constants/colors";
+import { CartContext } from "../Contexts/CartContext";
 import ModalItem from "./ModalItem";
 
 export default function ModalCart({ show, setShow }) {
+  const [totalCart, setTotalCart] = useState();
+
+  const { cart } = useContext(CartContext);
+
+  useEffect(() => {
+    let total = 0;
+    cart.forEach((item) => {
+      total += Number(item.value);
+    });
+
+    setTotalCart(total);
+  }, [cart]);
+
   if (!show) {
     return;
   }
@@ -20,17 +35,15 @@ export default function ModalCart({ show, setShow }) {
           ></ion-icon>
         </Header>
         <List>
-          <ModalItem />
-          <ModalItem />
-          <ModalItem />
-          <ModalItem />
-          <ModalItem />
+          {cart.map((product, idx) => (
+            <ModalItem product={product} id={idx} />
+          ))}
         </List>
 
         <Footer>
           <BoxValue>
             <h1>Total</h1>
-            <h1>R$ 50.70</h1>
+            <h1>R$ {totalCart.toFixed(2)}</h1>
           </BoxValue>
 
           <Button>Concluir</Button>

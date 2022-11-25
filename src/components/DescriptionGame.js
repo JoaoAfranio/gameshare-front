@@ -1,16 +1,26 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import COLORS from "../constants/colors";
-
-import mockedIMG from "../assets/imgs/detetive.jpg";
-import { useNavigate } from "react-router-dom";
+import { CartContext } from "../Contexts/CartContext";
 
 export default function DescriptionGame({ product }) {
-  const navigate = useNavigate();
+  const { cart, setCart } = useContext(CartContext);
+
+  function addItemToCart() {
+    const item = {
+      _id: product._id,
+      image: product.image,
+      name: product.name,
+      value: product.value,
+    };
+
+    setCart([...cart, item]);
+  }
 
   return (
     <Description>
       <BoxImg>
-        <img src={mockedIMG} alt="game" />
+        <img src={product.image} alt="game" />
       </BoxImg>
       <BoxText>
         <p className="title">{product.name}</p>
@@ -28,7 +38,12 @@ export default function DescriptionGame({ product }) {
         </Button>
 
         <Button>
-          <ion-icon name="cart"></ion-icon>
+          <ion-icon
+            onClick={() => {
+              addItemToCart();
+            }}
+            name="cart"
+          ></ion-icon>
         </Button>
       </BoxButtons>
     </Description>

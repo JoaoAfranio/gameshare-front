@@ -1,17 +1,26 @@
+import { useContext } from "react";
 import styled from "styled-components";
 
-import mockedIMG from "../assets/imgs/detetive.jpg";
 import COLORS from "../constants/colors";
+import { CartContext } from "../Contexts/CartContext";
 
-export default function ModalItem() {
+export default function ModalItem({ product, id }) {
+  const { cart, setCart } = useContext(CartContext);
   return (
     <Container>
       <BoxImg>
-        <img alt="game" src={mockedIMG} />
+        <img alt="game" src={product.image} />
       </BoxImg>
-      <h1>Detetive</h1>
-      <BoxHighlight>7.90/hr</BoxHighlight>
-      <BoxHighlight className="delete">
+      <h1>{product.name}</h1>
+      <BoxHighlight>{product.value}/hr</BoxHighlight>
+      <BoxHighlight
+        onClick={() => {
+          const listItems = cart;
+          listItems.splice(id, 1);
+          setCart(listItems);
+        }}
+        className="delete"
+      >
         <ion-icon name="trash-bin"></ion-icon>
       </BoxHighlight>
     </Container>
