@@ -4,13 +4,19 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import COLORS from "../constants/colors";
+import swal from "sweetalert";
+import { ThreeDots } from "react-loader-spinner";
 
 function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  function login() {
+  function login(e) {
+    e.preventDefault();
+    setLoading(true);
+
     const body = {
       email: email,
       password: password,
@@ -24,7 +30,8 @@ function SignInPage() {
       });
 
       promise.catch((err) => {
-        alert(err.response.data.message);
+        setLoading(false);
+        swal("Ocorreu um erro", err.response.data.message, "error");
         setEmail("");
         setPassword("");
       });
@@ -32,18 +39,34 @@ function SignInPage() {
   }
 
   return (
-    <SignInUp>
+    <SignInUp
+      onSubmit={(e) => {
+        login(e);
+      }}
+    >
       <Logo>
         <h1>GameShare</h1>
       </Logo>
 
       <Form>
-        <input name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Digite o seu email..." type="email" />
+        <input name="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Digite o seu email..." type="email" />
 
-        <input name="password" value={password} onChange={(e) => setPassword(e.target.value.toString())} placeholder="Digite a sua senha..." type="password" />
+        <input
+          name="password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value.toString())}
+          placeholder="Digite a sua senha..."
+          type="password"
+        />
 
-        <button type="submit" onClick={login}>
-          Entrar
+        <button type="submit">
+          {" "}
+          {loading ? (
+            <ThreeDots height="80" width="80" radius="9" color="#ffffff" ariaLabel="three-dots-loading" wrapperStyle={{}} wrapperClassName="" visible={true} />
+          ) : (
+            "Entrar"
+          )}
         </button>
       </Form>
 
@@ -68,7 +91,7 @@ const SignInUp = styled.div`
 const Logo = styled.div`
   width: 40vh;
   height: 15vh;
-  margin-top: 10vh;
+  margin-bottom: 5vh;
 
   display: flex;
   align-items: center;
@@ -83,7 +106,7 @@ const Logo = styled.div`
   }
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   margin-top: 7vh;
 
   display: flex;

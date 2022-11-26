@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import COLORS from "../constants/colors";
+import { ThreeDots } from "react-loader-spinner";
+import swal from "sweetalert";
 
 function SignUpPage() {
   const [email, setEmail] = useState("");
@@ -12,7 +14,11 @@ function SignUpPage() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const navigate = useNavigate();
 
-  function register() {
+  const [loading, setLoading] = useState(false);
+
+  function register(e) {
+    e.preventDefault();
+
     const body = {
       email: email,
       name: name,
@@ -20,17 +26,20 @@ function SignUpPage() {
       passwordConfirm: passwordConfirm,
     };
 
+    setLoading(true);
+
     setTimeout(() => {
       const promise = axios.post("http://localhost:5000/sign-up", body);
-
       promise.then((res) => {
+        swal("Sucesso", "Usuário cadastrado com sucesso!", "success");
         navigate("/");
       });
-
       promise.catch((err) => {
-        alert(err.response.data.message);
+        swal("Ocorreu um erro", err.response.data.message, "error");
+        setLoading(false);
         setEmail("");
         setName("");
+        setPassword("");
         setPasswordConfirm("");
       });
     }, 2000);
@@ -42,14 +51,26 @@ function SignUpPage() {
         <h1>GameShare</h1>
       </Logo>
 
-      <Form>
-        <input name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Digite o seu nome" type="text" />
+      <Form
+        onSubmit={(e) => {
+          register(e);
+        }}
+      >
+        <input required name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Digite o seu nome" type="text" />
 
-        <input name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Digite o seu email" type="email" />
-
-        <input name="password" value={password} onChange={(e) => setPassword(e.target.value.toString())} placeholder="Digite sua senha" type="password" />
+        <input required name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Digite o seu email" type="email" />
 
         <input
+          required
+          name="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value.toString())}
+          placeholder="Digite sua senha"
+          type="password"
+        />
+
+        <input
+          required
           name="password"
           value={passwordConfirm}
           onChange={(e) => setPasswordConfirm(e.target.value.toString())}
@@ -57,8 +78,12 @@ function SignUpPage() {
           type="password"
         />
 
-        <button type="submit" onClick={register}>
-          Cadastrar
+        <button type="submit">
+          {loading ? (
+            <ThreeDots height="80" width="80" radius="9" color="#ffffff" ariaLabel="three-dots-loading" wrapperStyle={{}} wrapperClassName="" visible={true} />
+          ) : (
+            "Cadastrar"
+          )}
         </button>
       </Form>
 
@@ -98,7 +123,7 @@ const Logo = styled.div`
   }
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   margin-top: 4vh;
 
   display: flex;
