@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import COLORS from "../constants/colors";
 
 function SignUpPage() {
   const [email, setEmail] = useState("");
@@ -42,17 +43,17 @@ function SignUpPage() {
       </Logo>
 
       <Form>
-        <input name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Digite o seu nome..." type="text" />
+        <input name="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Digite o seu nome" type="text" />
 
-        <input name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Digite o seu email..." type="email" />
+        <input name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Digite o seu email" type="email" />
 
-        <input name="password" value={password} onChange={(e) => setPassword(e.target.value.toString())} placeholder="Digite sua senha..." type="password" />
+        <input name="password" value={password} onChange={(e) => setPassword(e.target.value.toString())} placeholder="Digite sua senha" type="password" />
 
         <input
           name="password"
           value={passwordConfirm}
           onChange={(e) => setPasswordConfirm(e.target.value.toString())}
-          placeholder="Digite sua senha novamente..."
+          placeholder="Digite sua senha novamente"
           type="password"
         />
 
@@ -61,9 +62,9 @@ function SignUpPage() {
         </button>
       </Form>
 
-      <Link to="/">
-        <Registration>Já tem uma conta? Entre agora!</Registration>
-      </Link>
+      <Registration>
+        <LinkToLogin to="/">Já tem uma conta? Entre agora!</LinkToLogin>
+      </Registration>
     </SignInUp>
   );
 }
@@ -75,12 +76,14 @@ const SignInUp = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  background: linear-gradient(360deg, rgba(2, 0, 36, 1) 10%, rgba(31, 35, 65, 1) 90%, rgba(46, 50, 92, 1) 100%);
 `;
 
 const Logo = styled.div`
   width: 40vh;
   height: 15vh;
-  margin-top: 10vh;
+  margin-bottom: 5vh;
 
   display: flex;
   align-items: center;
@@ -91,6 +94,7 @@ const Logo = styled.div`
     font-style: normal;
     font-weight: 400;
     font-size: 7vh;
+    color: #ffffff;
   }
 `;
 
@@ -107,7 +111,16 @@ const Form = styled.div`
     height: 6vh;
     padding-left: 4vh;
     margin-bottom: 3vh;
-    border-radius: 5px;
+    border-radius: 15px;
+
+    border: none;
+    outline: none;
+    background-color: ${COLORS.secondary};
+    color: #ffffff;
+
+    &::placeholder {
+      color: ${COLORS.lightGrey};
+    }
   }
 
   button {
@@ -123,19 +136,30 @@ const Form = styled.div`
     font-family: "Lexend Deca", sans-serif;
     font-weight: 400;
     font-size: 3vh;
+
+    border-radius: 15px;
+    outline: none;
+    border: none;
+    background-color: ${COLORS.purple};
+    color: #ffffff;
   }
 `;
 
 const Registration = styled.div`
   width: 50vh;
-  height: 4vh;
-  margin-top: 4vh;
 
   display: flex;
   align-items: center;
   justify-content: center;
+`;
 
-  font-family: "Lexend Deca", sans-serif;
+const LinkToLogin = styled(Link)`
   font-weight: 400;
   font-size: 2vh;
+
+  position: fixed;
+  bottom: 5vh;
+
+  text-decoration: none;
+  color: #ffffff;
 `;
