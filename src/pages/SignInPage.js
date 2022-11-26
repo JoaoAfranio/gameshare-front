@@ -26,6 +26,7 @@ function SignInPage() {
       const promise = axios.post("http://localhost:5000/", body);
 
       promise.then((res) => {
+        localStorage.setItem("userToken", res.data.token);
         navigate("/games");
       });
 
