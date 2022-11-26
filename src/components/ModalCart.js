@@ -2,12 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import COLORS from "../constants/colors";
 import { CartContext } from "../Contexts/CartContext";
+import { purchase } from "../services/purchase";
 import ModalItem from "./ModalItem";
+import swal from "sweetalert";
 
 export default function ModalCart({ show, setShow }) {
   const [totalCart, setTotalCart] = useState();
 
-  const { cart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   useEffect(() => {
     let total = 0;
@@ -22,6 +24,32 @@ export default function ModalCart({ show, setShow }) {
     return;
   }
 
+  function renderItems() {
+    if (cart.length > 0) {
+      return cart.map((product, idx) => <ModalItem key={idx} product={product} id={idx} />);
+    }
+    return <TextAlertCart>Você não possui nenhum item no carrinho </TextAlertCart>;
+  }
+
+  async function sendPurchase() {
+    if (cart.length === 0) {
+      swal("Carrinho esta vazio", "Adicione itens ao carrinho", "warning");
+      return;
+    }
+
+    const userToken = localStorage.getItem("userToken");
+    const products = cart.map((items) => items._id);
+
+    try {
+      await purchase(products, totalCart, userToken);
+      swal("Sucesso", "Compra realizada com sucesso", "success");
+      setTotalCart(0);
+      setCart([]);
+    } catch (err) {
+      swal("Ocorreu um erro", err.response.data.message, "error");
+    }
+  }
+
   return (
     <ContainerOpacity>
       <Container>
@@ -34,11 +62,7 @@ export default function ModalCart({ show, setShow }) {
             }}
           ></ion-icon>
         </Header>
-        <List>
-          {cart.map((product, idx) => (
-            <ModalItem key={idx} product={product} id={idx} />
-          ))}
-        </List>
+        <List>{renderItems()}</List>
 
         <Footer>
           <BoxValue>
@@ -46,7 +70,13 @@ export default function ModalCart({ show, setShow }) {
             <h1>R$ {totalCart.toFixed(2)}</h1>
           </BoxValue>
 
-          <Button>Concluir</Button>
+          <Button
+            onClick={() => {
+              sendPurchase();
+            }}
+          >
+            Concluir
+          </Button>
         </Footer>
       </Container>
     </ContainerOpacity>
@@ -144,4 +174,8 @@ const List = styled.div`
 
   max-height: 300px;
   overflow-y: auto;
+`;
+
+const TextAlertCart = styled.p`
+  text-align: center;
 `;
