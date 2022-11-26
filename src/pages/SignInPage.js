@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 import axios from "axios";
 import COLORS from "../constants/colors";
 import swal from "sweetalert";
@@ -98,6 +99,7 @@ const Logo = styled.div`
   align-items: center;
   justify-content: center;
 
+
   h1 {
     font-family: "Saira Stencil One", cursive;
     font-style: normal;
@@ -105,6 +107,7 @@ const Logo = styled.div`
     font-size: 7vh;
     color: #ffffff;
   }
+
 `;
 
 const Form = styled.form`
@@ -173,3 +176,4 @@ const LinkToLogin = styled(Link)`
   text-decoration: none;
   color: #ffffff;
 `;
+
