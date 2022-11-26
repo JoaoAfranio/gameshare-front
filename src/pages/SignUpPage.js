@@ -45,7 +45,7 @@ function SignUpPage() {
             <Form>
                 <input
                     name="name"
-                    value={email}
+                    value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="Digite o seu nome..."
                     type="text"
