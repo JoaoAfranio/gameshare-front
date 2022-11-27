@@ -25,7 +25,7 @@ export default function DescriptionGame({ product }) {
       <BoxText>
         <p className="title">{product.name}</p>
         <p className="info">{product.publisher}</p>
-        <p className="value">R$ {product.value} /hr</p>
+        <p className="value">R$ {product.value} /dia</p>
       </BoxText>
       <BoxButtons>
         <Button>

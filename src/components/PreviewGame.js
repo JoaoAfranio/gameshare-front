@@ -28,6 +28,7 @@ const Container = styled.div`
   flex-direction: column;
 
   margin-top: 25px;
+  width: 100px;
 
   gap: 10px;
 
