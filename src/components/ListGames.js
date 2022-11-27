@@ -4,7 +4,7 @@ import COLORS from "../constants/colors";
 import PreviewGame from "./PreviewGame";
 
 export default function ListGames({ category }) {
-  const games = category?.products;
+  const games = (category?.products).slice(0, 3);
   const navigate = useNavigate();
 
   function navigation() {
