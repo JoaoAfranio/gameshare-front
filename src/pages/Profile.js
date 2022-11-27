@@ -1,9 +1,79 @@
 import styled from "styled-components";
+import { useState } from "react";
+import axios from 'axios';
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import COLORS from "../constants/colors";
 
 export default function CategoryGames() {
+  const token = localStorage.getItem("token");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [oldPassword, setOldPassword] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [cep, setCep] = useState("");
+
+  function nameChange() {
+
+    const body = {
+      name: name,
+      email: email
+    };
+
+    setTimeout(() => {
+      const promise = axios.post("http://localhost:5000/profile-name", body,
+          { headers: { Authorization: `Bearer ${token}` } });
+
+      promise.then((res) => alert("Alteração realizada com sucesso!"));
+
+      promise.catch((error) => alert(error.response.data.message));
+  }, 2000);
+
+  }
+
+  function passwordChange() {
+
+    const body = {
+      oldPassword: oldPassword,
+      newPassword: password,
+      newPasswordConfirm: passwordConfirm
+    };
+
+    setTimeout(() => {
+      const promise = axios.post("http://localhost:5000/profile-password", body,
+          { headers: { Authorization: `Bearer ${token}` } });
+
+      promise.then((res) => alert("Alteração realizada com sucesso!"));
+
+      promise.catch((error) => alert(error.response.data.message));
+  }, 2000);
+
+  }
+
+  function addressAdd() {
+
+    const body = {
+      address: address,
+      city: city,
+      state: state,
+      cep: cep
+    };
+
+     setTimeout(() => {
+      const promise = axios.post("http://localhost:5000/profile-address", body,
+          { headers: { Authorization: `Bearer ${token}` } });
+
+      promise.then((res) => alert("Alteração realizada com sucesso!"));
+
+      promise.catch((error) => alert(error.response.data.message));
+  }, 2000);
+
+  }
+
   return (
     <Container>
       <Header title="Perfil" />
@@ -11,60 +81,99 @@ export default function CategoryGames() {
       <BoxInfo>
         <Info>
           <Label>Email</Label>
-          <Input value="email@hotmail.com" disabled />
+          <Input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="E-mail"
+            type="email" />
         </Info>
 
         <Info>
           <Label>Nome</Label>
-          <Input placeholder="Nome" value="Nome da Pessoa" type="text" />
+          <Input
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Nome"
+            type="text" />
         </Info>
 
-        <Button>Confirmar Alterações</Button>
+        <Button type = "submit"
+          onClick = {nameChange}>Confirmar Alterações</Button>
       </BoxInfo>
 
       <Title>Alterar Senha</Title>
       <BoxInfo>
         <Info>
           <Label>Senha Antiga</Label>
-          <Input placeholder="Senha antiga" type="password" />
+          <Input
+            value={oldPassword}
+            onChange={(e) => setOldPassword((e.target.value).toString())}
+            placeholder="Senha antiga"
+            type="password" />
         </Info>
 
         <Info>
           <Label>Nova Senha</Label>
-          <Input placeholder="Nova Senha" type="password" />
+          <Input
+            value={password}
+            onChange={(e) => setPassword((e.target.value).toString())}
+            placeholder="Nova Senha"
+            type="password" />
         </Info>
 
         <Info>
           <Label>Confirmar Senha</Label>
-          <Input placeholder="Confirmar senha" type="password" />
+          <Input
+            value={passwordConfirm}
+            onChange={(e) => setPasswordConfirm((e.target.value).toString())}
+            placeholder="Confirmar senha"
+            type="password" />
         </Info>
 
-        <Button>Confirmar Nova Senha</Button>
+        <Button type = "submit"
+        onClick = {passwordChange}>Confirmar Nova Senha</Button>
       </BoxInfo>
 
-      <Title>Alterar Endereço</Title>
+      <Title>Adicionar Endereço</Title>
       <BoxInfo>
         <Info>
           <Label>Endereço</Label>
-          <Input placeholder="Endereço" type="text" />
+          <Input
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
+            placeholder="Endereço"
+            type="text" />
         </Info>
 
         <Info>
           <Label>Cidade</Label>
-          <Input placeholder="Cidade" type="text" />
+          <Input
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+            placeholder="Cidade"
+            type="text" />
         </Info>
 
         <Info>
           <Label>Estado</Label>
-          <Input placeholder="Estado" type="text" />
+          <Input
+            value={state}
+            onChange={(e) => setState(e.target.value)}
+            placeholder="Estado"
+            type="text" />
         </Info>
 
         <Info>
           <Label>CEP</Label>
-          <Input placeholder="CEP" type="text" />
+          <Input
+            value={cep}
+            onChange={(e) => setCep(e.target.value)}
+            placeholder="CEP"
+            type="text" />
         </Info>
 
-        <Button>Confirmar Novo Endereço</Button>
+        <Button type = "submit"
+        onClick={addressAdd}>Confirmar Endereço</Button>
       </BoxInfo>
       <Footer color={COLORS.secondary} />
     </Container>
