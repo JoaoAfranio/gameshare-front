@@ -7,7 +7,7 @@ export function purchase(products, priceByDay, token) {
     authorization: `Bearer ${token}`,
   };
 
-  const response = axios.post(`${BASE_URL}/purchase`, { products, priceByDay }, { headers }).catch((err) => err.response);
+  const response = axios.post(`${BASE_URL}purchase`, { products, priceByDay }, { headers }).catch((err) => err.response);
 
   return response;
 }
