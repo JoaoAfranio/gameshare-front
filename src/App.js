@@ -21,7 +21,7 @@ function App() {
           <Route path="/games/:id" element={<InfoGame />} />
           <Route path="/category" element={<CategoryGames />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/sucess" element={<SucessPage/>} />
+          <Route path="/sucess" element={<SucessPage />} />
         </Routes>
       </BrowserRouter>
     </CartProvider>

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = process.env.REACT_APP_API;
 
 export function findAllProducts() {
   const response = axios.get(`${BASE_URL}/products`).catch((err) => err.response);
