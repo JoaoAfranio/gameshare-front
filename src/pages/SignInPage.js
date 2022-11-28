@@ -14,6 +14,8 @@ function SignInPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const BASE_URL = process.env.REACT_APP_API;
+
   function login(e) {
     e.preventDefault();
     setLoading(true);
@@ -24,7 +26,7 @@ function SignInPage() {
     };
 
     setTimeout(() => {
-      const promise = axios.post("http://localhost:5000/", body);
+      const promise = axios.post(BASE_URL, body);
 
       promise.then((res) => {
         localStorage.setItem("userToken", res.data.token);
@@ -99,7 +101,6 @@ const Logo = styled.div`
   align-items: center;
   justify-content: center;
 
-
   h1 {
     font-family: "Saira Stencil One", cursive;
     font-style: normal;
@@ -107,7 +108,6 @@ const Logo = styled.div`
     font-size: 7vh;
     color: #ffffff;
   }
-
 `;
 
 const Form = styled.form`
@@ -176,4 +176,3 @@ const LinkToLogin = styled(Link)`
   text-decoration: none;
   color: #ffffff;
 `;
-
