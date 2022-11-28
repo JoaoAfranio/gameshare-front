@@ -16,6 +16,8 @@ function SignUpPage() {
 
   const [loading, setLoading] = useState(false);
 
+  const BASE_URL = process.env.REACT_APP_API;
+
   function register(e) {
     e.preventDefault();
 
@@ -29,7 +31,7 @@ function SignUpPage() {
     setLoading(true);
 
     setTimeout(() => {
-      const promise = axios.post("http://localhost:5000/sign-up", body);
+      const promise = axios.post(`${BASE_URL}sign-up`, body);
       promise.then((res) => {
         swal("Sucesso", "Usuário cadastrado com sucesso!", "success");
         navigate("/");
